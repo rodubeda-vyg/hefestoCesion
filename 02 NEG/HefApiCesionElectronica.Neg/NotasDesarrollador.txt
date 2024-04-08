@@ -1,0 +1,52 @@
+﻿//////
+////// Cargar documento 
+//XmlDocument xAEC = new XmlDocument();
+//xAEC.PreserveWhitespace = true;
+//xAEC.LoadXml(template);
+
+//////
+////// Recuperar el nodo a firmar
+////// con este metodo heradamos el namespace del documento
+//XmlElement xDTECedido = (XmlElement)xAEC.DocumentElement.GetElementsByTagName("DTECedido")[0];
+//HefRespuesta firma1 = Extensiones.HefSignature.HefFirmar(xDTECedido.OuterXml, this._certificado);
+
+//////
+////// Recuperar el nodo a firmar
+////// Siempre es el nodo cesion sin firmar ( generalmente el ultimo )
+//XmlElement xLastCesion = xAEC.DocumentElement.GetElementsByTagName("Cesion")
+//    .Cast<XmlElement>()
+//        .LastOrDefault();
+
+//////
+////// Firme el nodo
+//HefRespuesta firma2 = Extensiones.HefSignature.HefFirmar(xLastCesion.OuterXml, this._certificado);
+
+//////
+////// Intercambie las firmas en el documento template
+//template = Regex.Replace(
+//    template, 
+//        "<DTECedido.*?<\\/DTECedido>",
+//            firma1.Resultado as string, 
+//                RegexOptions.Singleline);
+
+//template = Regex.Replace(
+//    template,
+//        template.HefGetLastCesion(),
+//            firma2.Resultado as string,
+//                RegexOptions.Singleline);
+
+//////
+////// firme el documento completo
+//xAEC = new XmlDocument();
+//xAEC.PreserveWhitespace = true;
+//xAEC.LoadXml(template);
+
+//////
+////// Firme el documento completo
+//HefRespuesta firma3 = Extensiones.HefSignature.HefFirmar(xAEC.OuterXml, this._certificado);
+
+//////
+////// firme el documento completo
+//xAEC = new XmlDocument();
+//xAEC.PreserveWhitespace = true;
+//xAEC.LoadXml(firma3.Resultado as string);
